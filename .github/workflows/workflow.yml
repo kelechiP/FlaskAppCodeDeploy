@@ -10,17 +10,24 @@ env:
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       # Step 1
       - uses: actions/checkout@v2
+        name: Checkout Repository
+
       # Step 2
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
+
       # Step 3
       - name: Install dependencies
         run: pip install -r requirements.txt
+
       # Step 4
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -28,6 +35,7 @@ jobs:
           role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
           role-session-name: GitHub-Action-Role
           aws-region: ${{ env.AWS_REGION }}
+
       # Step 5
       - name: Build Application and Run unit Test
         run: python app.py & pytest
