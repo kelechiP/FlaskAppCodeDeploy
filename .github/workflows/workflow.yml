@@ -40,7 +40,7 @@ jobs:
 
       # Step 5
       - name: Build Application and Run unit Test
-        run: python app.py && pytest
+        run: python app.py & test_index.py
 
   continuous-deployment:
     runs-on: ubuntu-latest
