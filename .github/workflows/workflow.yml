@@ -18,10 +18,10 @@ jobs:
         name: Checkout Repository
 
       # Step 2
-      - name: Set up Python 3.6
+      - name: Set up Python 3.10
         uses: actions/setup-python@v2
         with:
-          python-version: "3.6"
+          python-version: "3.10"
 
       # Step 3
       - name: Install dependencies
